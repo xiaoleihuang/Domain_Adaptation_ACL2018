@@ -274,100 +274,13 @@ def lr_domain(results, train_idx, test_idx, balance=False, clf_da=None, clf_base
 
 
 if __name__ == '__main__':
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument('--fvs_path', default='./features/features_year.pkl', type=str)
-    # parser.add_argument('--fea_type', default='tfidf', type=str, help='Type of features: binary or tfidf')
-    # parser.add_argument('--split_mode', default='tvt', type=str)
-    # parser.add_argument('--incre', default='domain', type=str)
-    # parser.add_argument('--shuffle', default=False, type=bool)
-    # parser.add_argument('--balance', default=False, type=bool)
-    # parser.add_argument('--vizoutput', default='./image/eval/tmp.png', type=str)
-    # args = parser.parse_args()
-    # print(args)
-    # print()
-    #
-    # if not os.path.exists(args.fvs_path):
-    #     print('feature file does not exist, train a new file')
-    #     data_path = input(
-    #         "Input raw csv dataset ['./data/test_final_tagged_data_time.csv']: ")
-    #     data_path = data_path or './data/test_final_tagged_data_time.csv'
-    #     dataset = data_helper.load_data(data_path)
-    #
-    #     outp = data_helper.train_fvs_da(dataset, outputfile=args.fvs_path, balance=args.balance, fea_type=args.fea_type)
-    #     print('New feature pickle file has been saved to: '+ str(outp))
-    #     sys.exit(-1)
-    #
-    # try:
-    #     results = pickle.load(open(args.fvs_path, 'rb'))
-    # except IOError as ie:
-    #     print('feature file can not be loaded')
-    #     print(ie)
-    #     sys.exit(-1)
-    #
-    # if args.shuffle:
-    #     length = len(results['label_raw'])
-    #     shuffle_indices = np.arange(length)
-    #     np.random.shuffle(shuffle_indices)
-    #
-    #     results['fvs_base'] = results['fvs_base'][shuffle_indices]
-    #     results['fvs_da'] = results['fvs_da'][shuffle_indices]
-    #     results['label_raw'] = results['label_raw'][shuffle_indices]
-    #
-    # if args.incre == 'num':
-    #     eval_result = lr_incre(results, args.split_mode, balance=args.balance)
-    #     # plot
-    #     x = [idx*1000 for idx in range(len(eval_result['base']))]
-    #     plt.plot(x, eval_result['base'], label='base')
-    #     plt.plot(x, eval_result['da'], label='da')
-    #
-    #     plt.legend(loc='best')
-    #     plt.show()
-    #
-    # elif args.incre == 'domain':
-    #     data_path = input(
-    #         "Input raw dataset for domain ['./data/test_final_tagged_data_year.csv']: ")  # './data/test_final_tagged_data_time.csv'
-    #     data_path = data_path or './data/test_final_tagged_data_year.csv'
-    #     dataset = data_helper.load_data(data_path)
-    #     report_base, report_da = {}, {}
-    #
-    #     for train_idx, test_idx, domain in domain_idx_generator(results, dataset):
-    #         print("Domain:{2}\tTrain:{0}\tTest:{1}".format(len(train_idx), len(test_idx), domain))
-    #         report_base[domain], report_da[domain] = lr_domain(results, train_idx, test_idx, balance=args.balance)
-    #
-    #     indx = list(range(len(report_da.keys())+1))
-    #
-    #     if 'month' in data_path:
-    #         x = [int(item) for item in report_da.keys()]
-    #         plt.bar([item -0.2 for item in x], list(report_base.values()), width=0.4, label='base')
-    #         plt.bar(x, list(report_da.values()), width=0.4, label='da')
-    #         # plt.xticks(indx, ['0']+[str(item) for item in report_da.keys()])
-    #         plt.ylim([min(min(report_base.values()), min(report_da.values())) - 0.1,
-    #                   max(max(report_base.values()), max(report_da.values())) + 0.05])
-    #     else:
-    #         x = [str(item) for item in report_da.keys()]
-    #         plt.plot(x, list(report_base.values()), label='base')
-    #         plt.plot(x, list(report_da.values()), label='da')
-    #         plt.ylim([min(min(report_base.values()), min(report_da.values())) - 0.1,
-    #                   max(max(report_base.values()), max(report_da.values())) + 0.05])
-    #     print(sum(report_base.values())/len(report_base))
-    #     print(sum(report_da.values())/len(report_da))
-    #     plt.legend(loc='best')
-    #     plt.show()
-    # else:
-    #     if args.split_mode == 'cv':
-    #         eval_result = lr_cv(results, balance=args.balance)
-    #     elif args.split_mode == 'tvt':
-    #         eval_result = lr_tvt(results, balance=args.balance)
-    #     else:
-    #         print('split_mode does not exist, only cv or tvt')
-    #         sys.exit(-1)
 
     file_list = [
-#        ('./data/amazon/amazon_month_sample.tsv', './features/amazon/amazon_review_month_tfidf.pkl', {'C': 1.0, 'l1_ratio': 0.1, 'tol': 0.001, 'n_job': -1, 'bal': False, 'max_iter': 2000, 'solver': 'liblinear', 'lambda': 10}),
-#        ('./data/economy/economy_month_sample.tsv', './features/economy/economy_rel_month_tfidf.pkl', {'C': 1, 'l1_ratio': 0.1, 'tol': 0.001, 'n_job': -1, 'bal': False, 'max_iter': 2000, 'solver': 'liblinear', 'lambda': 10}),
-#        ('./data/vaccine/vaccine_month_sample.tsv', './features/vaccine/vaccine_month_tfidf.pkl', {'C': 1, 'l1_ratio': 0.1, 'tol': 0.001, 'n_job': -1, 'bal': False, 'max_iter': 2000, 'solver': 'liblinear', 'lambda': 10}),
-#        ('./data/yelp/yelp_Hotels_month_sample.tsv', './features/yelp/yelp_Hotels_month_tfidf.pkl', {'C': 1.0, 'l1_ratio': 0.1, 'tol': 0.001, 'n_job': -1, 'bal': False, 'max_iter': 2000, 'solver': 'liblinear', 'lambda': 10}),
-#        ('./data/yelp/yelp_Restaurants_month_sample.tsv', './features/yelp/yelp_Restaurants_month_tfidf.pkl', {'C': 1.0, 'l1_ratio': 0.1, 'tol': 0.001, 'n_job': -1, 'bal': False, 'max_iter': 2000, 'solver': 'liblinear', 'lambda': 10}),
+        ('./data/amazon/amazon_month_sample.tsv', './features/amazon/amazon_review_month_tfidf.pkl', {'C': 1.0, 'l1_ratio': 0.1, 'tol': 0.001, 'n_job': -1, 'bal': False, 'max_iter': 2000, 'solver': 'liblinear', 'lambda': 10}),
+        ('./data/economy/economy_month_sample.tsv', './features/economy/economy_rel_month_tfidf.pkl', {'C': 1, 'l1_ratio': 0.1, 'tol': 0.001, 'n_job': -1, 'bal': False, 'max_iter': 2000, 'solver': 'liblinear', 'lambda': 10}),
+        ('./data/vaccine/vaccine_month_sample.tsv', './features/vaccine/vaccine_month_tfidf.pkl', {'C': 1, 'l1_ratio': 0.1, 'tol': 0.001, 'n_job': -1, 'bal': False, 'max_iter': 2000, 'solver': 'liblinear', 'lambda': 10}),
+        ('./data/yelp/yelp_Hotels_month_sample.tsv', './features/yelp/yelp_Hotels_month_tfidf.pkl', {'C': 1.0, 'l1_ratio': 0.1, 'tol': 0.001, 'n_job': -1, 'bal': False, 'max_iter': 2000, 'solver': 'liblinear', 'lambda': 10}),
+        ('./data/yelp/yelp_Restaurants_month_sample.tsv', './features/yelp/yelp_Restaurants_month_tfidf.pkl', {'C': 1.0, 'l1_ratio': 0.1, 'tol': 0.001, 'n_job': -1, 'bal': False, 'max_iter': 2000, 'solver': 'liblinear', 'lambda': 10}),
          ('./data/amazon/amazon_year_sample.tsv', './features/amazon/amazon_review_year_tfidf.pkl', {'C': 1.0, 'l1_ratio': 0.1, 'tol': 0.001, 'n_job': -1, 'bal': False, 'max_iter': 2000, 'solver': 'liblinear', 'lambda': 30}),
          ('./data/economy/economy_year_sample.tsv', './features/economy/economy_rel_year_tfidf.pkl', {'C': 1, 'l1_ratio': 0.1, 'tol': 0.001, 'n_job': -1, 'bal': False, 'max_iter': 2000, 'solver': 'liblinear', 'lambda': 100}),
          ('./data/parties/parties_year_sample.tsv', './features/parties/parties_year_tfidf.pkl', {'C': 1, 'l1_ratio': 0.1, 'tol': 0.001, 'n_job': -1, 'bal': False, 'max_iter': 2000, 'solver': 'liblinear', 'lambda': 100}),
@@ -379,6 +292,15 @@ if __name__ == '__main__':
     # loop through each pair
     for pair in file_list:
         print('Working on: ' + pair[0])
+        if not os.path.exists(args.fvs_path):
+            print('feature file does not exist, train a feature vector')
+            data_path = input(
+             "Input raw csv dataset ['./data/amazon_year.tsv']: ")
+            data_path = data_path or './data/test_final_tagged_data_time.csv'
+            dataset = data_helper.load_data(data_path)
+
+            outp = data_helper.train_fvs_da(dataset, outputfile=args.fvs_path, balance=args.balance, fea_type=args.fea_type)
+            print('New feature pickle file has been saved to: '+ str(outp))
         results = pickle.load(open(pair[1], 'rb'))
         data_path = pair[0]
         dataset = data_helper.load_data(data_path)
@@ -397,23 +319,5 @@ if __name__ == '__main__':
             print("Domain:{2}\tTrain:{0}\tTest:{1}".format(len(train_idx), len(test_idx), domain))
             report_base[domain], report_da[domain] = lr_domain(results, train_idx, test_idx, balance=True, inits=pair[2])
 
-
-        # indx = list(range(len(report_da.keys())+1))
-        #
-        # if 'month' in data_path:
-        #     x = [int(item) for item in report_da.keys()]
-        #     plt.bar([item -0.2 for item in x], list(report_base.values()), width=0.4, label='base')
-        #     plt.bar(x, list(report_da.values()), width=0.4, label='da')
-        #     # plt.xticks(indx, ['0']+[str(item) for item in report_da.keys()])
-        #     plt.ylim([min(min(report_base.values()), min(report_da.values())) - 0.1,
-        #               max(max(report_base.values()), max(report_da.values())) + 0.05])
-        # else:
-        #     x = [str(item) for item in report_da.keys()]
-        #     plt.plot(x, list(report_base.values()), label='base')
-        #     plt.plot(x, list(report_da.values()), label='da')
-        #     plt.ylim([min(min(report_base.values()), min(report_da.values())) - 0.1,
-        #               max(max(report_base.values()), max(report_da.values())) + 0.05])
         print(sum(report_base.values())/len(report_base))
         print(sum(report_da.values())/len(report_da))
-#        plt.legend(loc='best')
-#        plt.show()

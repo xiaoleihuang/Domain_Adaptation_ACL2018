@@ -272,6 +272,10 @@ if __name__ == '__main__':
         'yelp_rest',
         'parties',
     ]
+    # multiprocess:
+#    p = Pool(5)
+#    p.map(run_exp, 'year')
+#    p.map(run_exp, 'month')
     for file_type in ['year', 'month']:
         for data in data_list:
             run_exp(data, file_type=file_type, create_vects=False, create_clfs=False)
