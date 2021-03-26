@@ -1,5 +1,5 @@
 # Domain_Adaptation_ACL2018
-The repository of domain adaptation project for the [Examining Temporality in Document Classification](http://cmci.colorado.edu/~mpaul/files/acl2018_temporality.pdf) in ACL 2018. The slides will come soon.
+The repository of domain adaptation project for the [Examining Temporality in Document Classification](https://www.aclweb.org/anthology/P18-2110/) in ACL 2018. The slides will come soon.
 
 # Table of Contents
  * Installation
